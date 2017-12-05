@@ -1,7 +1,7 @@
-service.autosubs
+service.autoSRT
 ===============
 
-Auto trigger XBMC Subtitle download if no subtitle (language) is found for a Movie/TV Show.<br>
+Auto trigger XBMC Subtitle download if no SRT subtitle file is found for a Movie/TV Show.<br>
 
 Configuration options:
 - Exclude media paths
