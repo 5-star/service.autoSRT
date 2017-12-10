@@ -44,18 +44,17 @@ def getSettingAsBool(setting):
 
 # check exclusion settings for filename passed as argument
 def isExcluded(movieFullPath):
-
     if not movieFullPath:
         return False
 
     movieFile = movieFullPath.rsplit(".", 1)[0]
     if xbmcvfs.exists(movieFile + '.srt'):
         return False
-    if xbmcvfs.exists(movieFile + '.pt.srt'):
-        return False
-    if xbmcvfs.exists(movieFile + '.srt'):
+    if xbmcvfs.exists(movieFile + '..srt'):
         return False
     if xbmcvfs.exists(movieFile + '.pt.srt'):
+        return False
+    if xbmcvfs.exists(movieFile + '.en.srt'):
         return False
 	
     Debug("isExcluded(): Checking exclusion settings for '%s'." % movieFullPath, True)
