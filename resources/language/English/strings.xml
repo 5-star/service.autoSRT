@@ -3,8 +3,11 @@
     <!-- General -->
     <string id="32010">General</string>
     <string id="32100">Enable debug mode</string>
-    <string id="32101">Look for a specific language</string>
-    <string id="32102">Subtitle language</string>
+    <string id="32101">Look for extension</string>
+    <string id="32101">Look for extension</string>
+    <string id="32101">Look for extension</string>
+    <string id="32101">Look for extension</string>
+    <string id="32101">Look for extension</string>
 
     <!-- Exclusions -->
     <string id="32020">Exclusions</string>

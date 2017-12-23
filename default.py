@@ -21,6 +21,11 @@ __settings__ = xbmcaddon.Addon("service.autoSRT")
 
 ignore_words = (__settings__.getSetting('ignore_words').split(','))
 ExcludeTime = int((__settings__.getSetting('ExcludeTime')))*60
+ExcludeExt1 = (__settings__.getSetting('ExcludeExt1'))
+ExcludeExt2 = (__settings__.getSetting('ExcludeExt2'))
+ExcludeExt3 = (__settings__.getSetting('ExcludeExt3'))
+ExcludeExt4 = (__settings__.getSetting('ExcludeExt4'))
+ExcludeExt5 = (__settings__.getSetting('ExcludeExt5'))
 
 sys.path.append(__resource__)
 
@@ -48,13 +53,15 @@ def isExcluded(movieFullPath):
         return False
 
     movieFile = movieFullPath.rsplit(".", 1)[0]
-    if xbmcvfs.exists(movieFile + '.srt'):
+    if xbmcvfs.exists(movieFile + ExcludeExt1):
         return False
-    if xbmcvfs.exists(movieFile + '..srt'):
+    if xbmcvfs.exists(movieFile + ExcludeExt2):
         return False
-    if xbmcvfs.exists(movieFile + '.pt.srt'):
+    if xbmcvfs.exists(movieFile + ExcludeExt3):
         return False
-    if xbmcvfs.exists(movieFile + '.en.srt'):
+    if xbmcvfs.exists(movieFile + ExcludeExt4):
+        return False
+    if xbmcvfs.exists(movieFile + ExcludeExt5):
         return False
 	
     Debug("isExcluded(): Checking exclusion settings for '%s'." % movieFullPath, True)
@@ -115,9 +122,6 @@ class AutoSubsPlayer(xbmc.Player):
         self.run = True
 
     def onPlayBackStarted(self):
-        check_for_specific = (__addon__.getSetting('check_for_specific').lower() == 'true')
-        specific_language = (__addon__.getSetting('selected_language'))
-        specific_language = xbmc.convertLanguage(specific_language, xbmc.ISO_639_2)
         try:
             xbmc.sleep(3000)
             if self.getSubtitles(): self.run = false
@@ -134,7 +138,7 @@ class AutoSubsPlayer(xbmc.Player):
             if getSettingAsBool('ExcludeVideoClip'):
                 videoclipAlbum = xbmc.InfoTagMusic.getAlbum()
                 Debug("videoclipAlbum '%s'" % videoclipAlbum)
-            if (xbmc.Player().isPlayingVideo() and totalTime > ExcludeTime and (not videoclipAlbum) and ((not xbmc.getCondVisibility("VideoPlayer.HasSubtitles")) or (check_for_specific and not specific_language in availableLangs)) and all(movieFullPath.find (v) <= -1 for v in ignore_words) and (isExcluded(movieFullPath)) ):
+            if (xbmc.Player().isPlayingVideo() and totalTime > ExcludeTime and (not videoclipAlbum) and all(movieFullPath.find (v) <= -1 for v in ignore_words) and (isExcluded(movieFullPath)) ):
                 self.run = False
                 xbmc.sleep(1000)
                 Debug('Started: AutoSearching for Subs')
