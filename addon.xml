@@ -9,8 +9,14 @@
     <provides>executable</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
+    <summary lang="en_GB">Search for Subtitles on Play if missing</summary>
     <summary lang="en_US">Search for Subtitles on Play if missing</summary>
+    <summary lang="en_AU">Search for Subtitles on Play if missing</summary>
+    <summary lang="en_NZ">Search for Subtitles on Play if missing</summary>
+    <description lang="en_GB">Auto Search for Subtitles on Playback start if no SRT file is found.[CR][CR]Icon credits goes to zNET Computer Solutions http://www.znetcs.pl</description>
     <description lang="en_US">Auto Search for Subtitles on Playback start if no SRT file is found.[CR][CR]Icon credits goes to zNET Computer Solutions http://www.znetcs.pl</description>
+    <description lang="en_AU">Auto Search for Subtitles on Playback start if no SRT file is found.[CR][CR]Icon credits goes to zNET Computer Solutions http://www.znetcs.pl</description>
+    <description lang="en_NZ">Auto Search for Subtitles on Playback start if no SRT file is found.[CR][CR]Icon credits goes to zNET Computer Solutions http://www.znetcs.pl</description>
     <summary lang="pt_PT">Pesquisa Automática por legendas no Play se não existir SRT</summary>
     <summary lang="pt_BR">Pesquisa Automática por legendas no Play se não existir SRT</summary>
     <description lang="pt_PT">Pesquisa Automática por legendas na reprodução se não existir um ficheiro SRT de legendas.</description>
