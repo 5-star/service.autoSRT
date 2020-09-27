@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon id="service.autoSRT"
     name="AutoSRT (Unofficial)" version="1.0.7" provider-name="schumi2004,Mafarricos,rodrigl">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-  </requires>
   <extension point="xbmc.service" library="default.py" start="login" />
   <extension point="xbmc.python.script" library="default.py">
     <provides>executable</provides>
