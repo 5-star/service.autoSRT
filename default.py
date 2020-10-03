@@ -13,9 +13,9 @@ __cwd__ = __addon__.getAddonInfo('path')
 __version__ = __addon__.getAddonInfo('version')
 __language__ = __addon__.getLocalizedString
 debug = __addon__.getSetting("debug")
-__cwd__ = xbmc.translatePath(__addon__.getAddonInfo('path')).decode("utf-8")
-__profile__ = xbmc.translatePath(__addon__.getAddonInfo('profile')).decode("utf-8")
-__resource__ = xbmc.translatePath(os.path.join(__cwd__, 'resources')).decode("utf-8")
+__cwd__ = xbmc.translatePath(__addon__.getAddonInfo('path'))
+__profile__ = xbmc.translatePath(__addon__.getAddonInfo('profile'))
+__resource__ = xbmc.translatePath(os.path.join(__cwd__, 'resources'))
 
 __settings__ = xbmcaddon.Addon("service.autoSRT")
 
@@ -30,12 +30,12 @@ ExcludeExt5 = (__settings__.getSetting('ExcludeExt5'))
 sys.path.append(__resource__)
 
 
+player_monitor = xbmc.Monitor()
+
+
 def Debug(msg, force = False):
     if(debug == "true" or force):
-        try:
-            print "#####[AutoSubs]##### " + msg
-        except UnicodeEncodeError:
-            print "#####[AutoSubs]##### " + msg.encode( "utf-8", "ignore" )
+        xbmc.log("#####[AutoSubs]##### " + msg,3)
 
 Debug("Loading '%s' version '%s'" % (__scriptname__, __version__))
 
@@ -107,7 +107,7 @@ def isExcluded(movieFullPath):
     return True
 
 
-class AutoSubsPlayer(xbmc.Player):
+class KodiPlayer(xbmc.Player):
     def __init__(self, *args, **kwargs):
         xbmc.Player.__init__(self)
         Debug("Initalized")
@@ -122,6 +122,7 @@ class AutoSubsPlayer(xbmc.Player):
         self.run = True
 
     def onPlayBackStarted(self):
+        Debug("Started")
         try:
             xbmc.sleep(3000)
             if self.getSubtitles(): self.run = false
@@ -134,23 +135,26 @@ class AutoSubsPlayer(xbmc.Player):
             Debug("availableLangs '%s'" % availableLangs)
             totalTime = xbmc.Player().getTotalTime()
             Debug("totalTime '%s'" % totalTime)
-            videoclipAlbum = ''			
+            videoclip = False
             if getSettingAsBool('ExcludeVideoClip'):
-                videoclipAlbum = xbmc.InfoTagMusic.getAlbum()
-                Debug("videoclipAlbum '%s'" % videoclipAlbum)
-            if (xbmc.Player().isPlayingVideo() and totalTime > ExcludeTime and (not videoclipAlbum) and all(movieFullPath.find (v) <= -1 for v in ignore_words) and (isExcluded(movieFullPath)) ):
+                videoType = xbmc.Player().getVideoInfoTag().getMediaType()
+                Debug("videoType '%s'" % str(videoType))
+                if videoType == 'musicvideo':  videoclip = True
+            if (xbmc.Player().isPlayingVideo() and totalTime > ExcludeTime and (not videoclip) and all(movieFullPath.find (v) <= -1 for v in ignore_words) and (isExcluded(movieFullPath)) ):
                 self.run = False
                 xbmc.sleep(1000)
                 Debug('Started: AutoSearching for Subs')
                 xbmc.executebuiltin('XBMC.ActivateWindow(SubtitleSearch)')
+                Debug('Started: AutoSearching for Subs 2')
             else:
                 Debug('Started: Subs found or Excluded')
                 self.run = False
 
+class KodiRunner:
+    player = KodiPlayer()
 
-player_monitor = AutoSubsPlayer()
+    while not player_monitor.abortRequested():
+        player_monitor.waitForAbort(1)
 
-while not xbmc.abortRequested:
-    xbmc.sleep(1000)
+    del player
 
-del player_monitor

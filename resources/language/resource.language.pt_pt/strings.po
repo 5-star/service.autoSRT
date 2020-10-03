@@ -1,0 +1,47 @@
+msgid ""
+msgstr ""
+
+msgctxt "#32010"
+msgid "General"
+msgstr "Geral"
+
+msgctxt "#32100"
+msgid "Enable debug mode"
+msgstr "Ativar modo depuração"
+
+msgctxt "#32101"
+msgid "Look for extension"
+msgstr "Procurar extensão"
+
+msgctxt "#32020"
+msgid "Exclusions"
+msgstr "Exclusões"
+
+msgctxt "#32200"
+msgid "Exclude for videos with less than X minutes"
+msgstr "Excluir videos com menos de X minutos"
+
+msgctxt "#32201"
+msgid "Ignore words (comma separated)"
+msgstr "Ignorar palavras (separadas por virgulas)"
+
+msgctxt "#32202"
+msgid "Exclude Live TV"
+msgstr "Excluir TV ao Vivo"
+
+msgctxt "#32203"
+msgid "Exclude HTTP sources"
+msgstr "Excluir fontes HTTP"
+
+msgctxt "#32204"
+msgid "Exclude path"
+msgstr "Excluir caminho"
+
+msgctxt "#32205"
+msgid "Folder's path (and subfolders)"
+msgstr "Caminho para a pasta (e subpastas)"
+
+msgctxt "#32206"
+msgid "Exclude Music Videos"
+msgstr "Excluir videos de música"
+
