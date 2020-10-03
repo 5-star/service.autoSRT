@@ -20,5 +20,6 @@
 	<description lang="pt_BR">Pesquisa Automática por legendas na reprodução se não existir um ficheiro SRT de legendas.</description>	
     <platform>all</platform>
     <language>en</language>
+	<source>https://github.com/5-star/service.autoSRT</source>
   </extension>
 </addon>
