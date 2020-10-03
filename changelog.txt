@@ -1,3 +1,4 @@
+6.0.0 - Kodi 19
 1.0.7 - Extensions to look for moved to settings
 1.0.6 - rodrigl - Check for existence of SRT subtitle file
 1.0.5 - Mafarricos
