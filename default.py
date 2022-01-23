@@ -13,9 +13,9 @@ __cwd__ = __addon__.getAddonInfo('path')
 __version__ = __addon__.getAddonInfo('version')
 __language__ = __addon__.getLocalizedString
 debug = __addon__.getSetting("debug")
-__cwd__ = xbmc.translatePath(__addon__.getAddonInfo('path'))
-__profile__ = xbmc.translatePath(__addon__.getAddonInfo('profile'))
-__resource__ = xbmc.translatePath(os.path.join(__cwd__, 'resources'))
+__cwd__ = xbmcvfs.translatePath(__addon__.getAddonInfo('path'))
+__profile__ = xbmcvfs.translatePath(__addon__.getAddonInfo('profile'))
+__resource__ = xbmcvfs.translatePath(os.path.join(__cwd__, 'resources'))
 
 __settings__ = xbmcaddon.Addon("service.autoSRT")
 
@@ -35,7 +35,7 @@ player_monitor = xbmc.Monitor()
 
 def Debug(msg, force = False):
     if(debug == "true" or force):
-        xbmc.log("#####[AutoSubs]##### " + msg,3)
+        xbmc.log("#####[AutoSRT]##### " + msg,3)
 
 Debug("Loading '%s' version '%s'" % (__scriptname__, __version__))
 
@@ -144,8 +144,8 @@ class KodiPlayer(xbmc.Player):
                 self.run = False
                 xbmc.sleep(1000)
                 Debug('Started: AutoSearching for Subs')
-                xbmc.executebuiltin('XBMC.ActivateWindow(SubtitleSearch)')
-                Debug('Started: AutoSearching for Subs 2')
+                xbmc.executebuiltin('ActivateWindow(SubtitleSearch)')
+                Debug('Started: AutoSearch completed')
             else:
                 Debug('Started: Subs found or Excluded')
                 self.run = False
